@@ -1,6 +1,7 @@
 package com.lbg.interview.model.dto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class TransactionDTO {
 
@@ -50,4 +51,17 @@ public class TransactionDTO {
         this.text = text;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransactionDTO that = (TransactionDTO) o;
+        return Double.compare(that.amount , amount) == 0 && dateTime.equals(that.dateTime) && transactionType.equals(that.transactionType) && text.equals(that.text);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateTime , transactionType , amount , text);
+    }
 }
